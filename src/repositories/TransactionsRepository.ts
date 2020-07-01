@@ -1,3 +1,5 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable no-param-reassign */
 import { uuid } from 'uuidv4';
 import Transaction from '../models/Transaction';
 
