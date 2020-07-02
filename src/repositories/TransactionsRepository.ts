@@ -1,5 +1,3 @@
-/* eslint-disable no-return-assign */
-/* eslint-disable no-param-reassign */
 import { uuid } from 'uuidv4';
 import Transaction from '../models/Transaction';
 
@@ -30,7 +28,7 @@ class TransactionsRepository {
     return this.transactions
       .filter(trans => trans.type === 'income')
       .reduce((sum, transaction) => {
-        return (sum += transaction.value);
+        return sum + transaction.value;
       }, 0);
   }
 
@@ -38,7 +36,7 @@ class TransactionsRepository {
     return this.transactions
       .filter(transaction => transaction.type === 'outcome')
       .reduce((sum, transaction) => {
-        return (sum += transaction.value);
+        return sum + transaction.value;
       }, 0);
   }
 
@@ -47,13 +45,13 @@ class TransactionsRepository {
     const totalOutcome = this.getTotalOutcome();
     const total = totalIncome - totalOutcome;
 
-    const balence = {
+    const balance = {
       income: totalIncome,
       outcome: totalOutcome,
       total,
     };
 
-    return balence;
+    return balance;
   }
 
   public create({ title, value, type }: CreateTransactionDTO): Transaction {
